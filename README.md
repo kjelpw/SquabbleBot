@@ -1,1 +1,2 @@
 # SquabbleBot
+https://squabble.me/
