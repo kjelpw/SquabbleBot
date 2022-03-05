@@ -6,5 +6,5 @@ dict.csv is a file of 5 letter words that should be suitable for the game. Dicti
 
 # TODO
 - [ ] Sort dict.csv in a meaningful way
-- [ ] Be able to input words into game
+- [X] Be able to input words into game
 - [ ] Recognize game state (Correct letters, correct position, health)
