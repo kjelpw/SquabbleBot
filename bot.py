@@ -42,6 +42,30 @@ class game():
     def guess_next_word(self):
         print('temp')
 
+    def is_game_started(self):
+        try:
+            health = self.driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div[1]/div[1]/div').innerHTML
+            return True
+        except:
+            sleep(1)
+            print('game not started')
+            self.is_game_started()
+
+    def is_game_over(self):
+        return False
+
+    def play(self):
+        #wait for game to start
+        if self.is_game_started():
+            print('game started')
+        
+        while not self.is_game_over():
+            #get health of the player
+            health = self.driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div[1]/div[1]/div').innerHTML
+            print(health)
+            self.guess_next_word()
+
+
 
 if __name__ == "__main__" :
     print('starting wordle game')
@@ -49,7 +73,7 @@ if __name__ == "__main__" :
     mygame.start_game()
 
     print('guessing')
-    mygame.guess_next_word()
+    mygame.play()
 
     print('ending game')
     mygame.end_game()
