@@ -4,9 +4,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver import FirefoxOptions
 from time import sleep
 from wordbank import wordbank
+import sys
 
 class game():
-    def __init__(self):
+    def __init__(self, guesstype):
         #open up firefox
         opts = FirefoxOptions()
         #opts.add_argument('--headless')
@@ -16,7 +17,7 @@ class game():
         self.actions = ActionChains(self.driver)
 
         #start our bank of words
-        game_words = wordbank()
+        game_words = wordbank(guesstype)
 
     def start_game(self):
         #start a game
@@ -69,7 +70,8 @@ class game():
 
 if __name__ == "__main__" :
     print('starting wordle game')
-    mygame = game()
+    print(str(sys.argv[1]))
+    mygame = game(str(sys.argv[1]))
     mygame.start_game()
 
     print('guessing')
