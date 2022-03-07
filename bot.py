@@ -44,11 +44,17 @@ class game():
         print('temp')
 
     def is_game_started(self):
+        sleep(2)
         try:
-            health = self.driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div[1]/div[1]/div').innerHTML
-            return True
-        except:
-            sleep(1)
+            health = self.driver.find_element_by_class_name('/html/body/div/div[1]/div/div[1]/div[1]/div[1]').text
+            print(health)
+            if 'HP' in health:
+                return True
+            else:
+                print('dont see hp')
+                self.is_game_started()
+        except Exception as e:
+            print(e)
             print('game not started')
             self.is_game_started()
 
@@ -60,11 +66,11 @@ class game():
         if self.is_game_started():
             print('game started')
         
-        while not self.is_game_over():
-            #get health of the player
-            health = self.driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div[1]/div[1]/div').innerHTML
-            print(health)
-            self.guess_next_word()
+        # while not self.is_game_over():
+        #     #get health of the player
+        #     health = self.driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div[1]/div[1]/div').innerHTML
+        #     print(health)
+        #     self.guess_next_word()
 
 
 
