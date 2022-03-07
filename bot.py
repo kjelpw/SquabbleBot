@@ -7,7 +7,7 @@ from wordbank import wordbank
 import sys
 
 class game():
-    def __init__(self, guesstype):
+    def __init__(self, guesstype='bruteforce'):
         #open up firefox
         opts = FirefoxOptions()
         #opts.add_argument('--headless')
@@ -17,7 +17,7 @@ class game():
         self.actions = ActionChains(self.driver)
 
         #start our bank of words
-        game_words = wordbank(guesstype)
+        self.game_words = wordbank(guesstype)
 
     def start_game(self):
         #start a game
@@ -70,8 +70,12 @@ class game():
 
 if __name__ == "__main__" :
     print('starting wordle game')
-    print(str(sys.argv[1]))
-    mygame = game(str(sys.argv[1]))
+    if len(sys.argv) > 1:
+        print('using ' + str(sys.argv[1]))
+        mygame = game(str(sys.argv[1]))
+    else:
+        print('using default')
+        mygame = game()
     mygame.start_game()
 
     print('guessing')
