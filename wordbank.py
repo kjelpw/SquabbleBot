@@ -2,7 +2,7 @@ import csv
 
 class wordbank():
     #get our list of words
-    def __init__(self, guesstype='bruteforce'):
+    def __init__(self, guesstype):
         read_file = open('dict.csv', newline='')
         words = csv.reader(read_file)
 
